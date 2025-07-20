@@ -6,30 +6,30 @@
   <title>NEXUTHA</title>
   <style>
     html, body {
-      margin: 0; padding: 0; overflow: hidden;
+      margin: 0; padding: 0;
+      overflow: hidden;
+      background: black;
+      color: white;
       font-family: "Arial", sans-serif;
-      background: black; color: white;
     }
-    canvas {
+    canvas#bg {
       position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: -1;
+      top: 0; left: 0;
+      z-index: 0;
     }
     header, main, section, footer {
-      padding: 2rem;
+      position: relative;
+      z-index: 1;
       text-align: center;
+      padding: 2rem;
     }
     .feature-card {
       background: rgba(255,255,255,0.05);
       margin: 1rem auto; padding: 1rem;
       border-radius: 1rem; width: 80%;
     }
-    .music-links {
-      margin-top: 2rem;
-    }
-    .artist {
-      margin-bottom: 1.5rem;
-    }
+    .music-links { margin-top: 2rem; }
+    .artist { margin-bottom: 1.5rem; }
     .music-button {
       display: inline-block;
       margin: 0.3rem;
@@ -44,18 +44,17 @@
     #lang-switch {
       position: absolute;
       top: 1rem; right: 1rem;
-      background: #444; color: #fff; border: none;
-      padding: 0.5rem 1rem; border-radius: 5px;
-      cursor: pointer;
-    }
-    a.music-button:hover {
-      opacity: 0.85;
+      background: #444; color: #fff;
+      border: none; padding: 0.5rem 1rem;
+      border-radius: 5px; cursor: pointer;
+      z-index: 2;
     }
   </style>
 </head>
 <body>
   <canvas id="bg"></canvas>
   <button id="lang-switch" onclick="switchLanguage()">ENGLISH</button>
+
   <header>
     <h1 id="main-title">ようこそ、NEXUTHAへ</h1>
     <p id="subtitle">未来を創るAIプラットフォーム</p>
@@ -64,13 +63,11 @@
 
   <section class="music-links">
     <h2>🎧 音楽リリース</h2>
-
     <div class="artist">
       <h3>ON:μ</h3>
       <a href="https://music.apple.com/jp/artist/on-%CE%BC/1821249016" class="music-button" target="_blank">Apple Music</a>
       <a href="https://open.spotify.com/artist/6mlMniZ6dIFrAgtvyNngtd?si=UYmcqgLiQdSJnxhb7uHRHQ" class="music-button" target="_blank">Spotify</a>
     </div>
-
     <div class="artist">
       <h3>NEXUTHA</h3>
       <a href="https://music.apple.com/jp/artist/nexutha/1822103960" class="music-button" target="_blank">Apple Music</a>
@@ -87,10 +84,6 @@
       <h2 class="feature-title">未来設計</h2>
       <p class="feature-desc">個人の可能性を広げるツール。</p>
     </div>
-    <div class="feature-card">
-      <h2 class="feature-title">統合体験</h2>
-      <p class="feature-desc">音楽、AI、表現をひとつに。</p>
-    </div>
   </main>
 
   <footer>
@@ -102,17 +95,32 @@
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
     let hue = 0;
+    let mouse = { x: 0, y: 0 };
     document.addEventListener("mousemove", (e) => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const gradient = ctx.createRadialGradient(e.clientX, e.clientY, 0, e.clientX, e.clientY, 150);
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function animate() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 150);
       gradient.addColorStop(0, `hsl(${hue}, 100%, 70%)`);
-      gradient.addColorStop(1, 'transparent');
+      gradient.addColorStop(1, "transparent");
       ctx.fillStyle = gradient;
       ctx.beginPath();
-      ctx.arc(e.clientX, e.clientY, 150, 0, Math.PI * 2);
+      ctx.arc(mouse.x, mouse.y, 150, 0, Math.PI * 2);
       ctx.fill();
-      hue = (hue + 2) % 360;
+      hue = (hue + 1) % 360;
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     });
 
     const translations = {
@@ -121,11 +129,10 @@
         subtitle: "AI platform for the future",
         button: "Get Started",
         langBtn: "日本語",
-        features: ["Instant Insight", "Future Design", "Integrated Experience"],
+        features: ["Instant Insight", "Future Design"],
         descriptions: [
           "Real-time AI supports your decisions.",
-          "Tools that expand individual potential.",
-          "Music, AI, and creativity in one place."
+          "Tools that expand individual potential."
         ]
       },
       ja: {
@@ -133,11 +140,10 @@
         subtitle: "未来を創るAIプラットフォーム",
         button: "はじめる",
         langBtn: "ENGLISH",
-        features: ["即時インサイト", "未来設計", "統合体験"],
+        features: ["即時インサイト", "未来設計"],
         descriptions: [
           "リアルタイムAIが意思決定を支援。",
-          "個人の可能性を広げるツール。",
-          "音楽、AI、表現をひとつに。"
+          "個人の可能性を広げるツール。"
         ]
       }
     };
