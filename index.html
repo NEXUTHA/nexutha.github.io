@@ -8,29 +8,25 @@
     html, body {
       margin: 0;
       height: 100%;
-      background-color: black;
-      color: white;
-      font-family: sans-serif;
+      background: black;
       overflow: hidden;
+    }
+    h1 {
+      color: white;
+      text-align: center;
+      font-size: 3em;
+      position: absolute;
+      width: 100%;
+      top: 40%;
+      z-index: 10;
+      font-family: sans-serif;
     }
     canvas {
       display: block;
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
-      z-index: -1;
-    }
-    h1 {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      top: 40%;
-      font-size: 3em;
-      animation: fadeIn 2s ease-out;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+      z-index: 0;
     }
   </style>
 </head>
