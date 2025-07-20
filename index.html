@@ -4,34 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEXUTHA</title>
-  <script src="https://cdn.jsdelivr.net/gh/hcg1023/mouse-ball@latest/mouse-ball.min.js"></script>
+
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #1e3c72, #2a5298);
-      color: white;
-      text-align: center;
+    html, body {
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: white;
+      text-align: center;
+      height: 100%;
     }
+
     header {
       padding: 100px 20px 40px;
-      font-size: 2.5em;
+      font-size: 2.8em;
       font-weight: bold;
       text-shadow: 0 0 10px #000000;
     }
+
     section {
       max-width: 800px;
       margin: auto;
-      padding: 20px;
+      padding: 30px;
       font-size: 1.2em;
-      line-height: 1.6;
+      line-height: 1.7;
     }
+
     footer {
       margin-top: 60px;
       padding: 20px;
       font-size: 0.9em;
       color: #ccc;
+    }
+
+    .ball {
+      position: fixed;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      animation: rainbow 5s linear infinite;
+      mix-blend-mode: lighten;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    @keyframes rainbow {
+      0% { background: red; }
+      16% { background: orange; }
+      33% { background: yellow; }
+      50% { background: green; }
+      66% { background: blue; }
+      83% { background: indigo; }
+      100% { background: violet; }
     }
   </style>
 </head>
@@ -53,11 +80,13 @@
   <footer>© 2025 NEXUTHA. All Rights Reserved.</footer>
 
   <script>
-    MouseBall.init({
-      color: "rainbow",
-      size: 20,
-      opacity: 0.4,
-      speed: 0.2
+    const ball = document.createElement("div");
+    ball.classList.add("ball");
+    document.body.appendChild(ball);
+
+    document.addEventListener("mousemove", (e) => {
+      ball.style.left = `${e.clientX - 12}px`;
+      ball.style.top = `${e.clientY - 12}px`;
     });
   </script>
 </body>
