@@ -7,84 +7,53 @@
   <style>
     html, body {
       margin: 0;
+      padding: 0;
+      overflow: hidden;
       height: 100%;
       background: black;
-      overflow: hidden;
-    }
-    h1 {
-      color: white;
-      text-align: center;
-      font-size: 3em;
-      position: absolute;
-      width: 100%;
-      top: 40%;
-      z-index: 10;
-      font-family: sans-serif;
     }
     canvas {
-      display: block;
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
-      z-index: 0;
+    }
+    .text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 2em;
+      font-family: Arial, sans-serif;
     }
   </style>
 </head>
 <body>
-  <h1>Hello, this is NEXUTHA.</h1>
-  <canvas id="canvas"></canvas>
+  <canvas id="bg"></canvas>
+  <div class="text">Hello, this is NEXUTHA.</div>
   <script>
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
 
-    const mouse = { x: w / 2, y: h / 2 };
-
-    const particles = Array.from({ length: 120 }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 2 + 1,
-      vx: 0,
-      vy: 0
-    }));
-
-    window.addEventListener("resize", () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-    });
-
-    window.addEventListener("mousemove", e => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
 
     function draw() {
-      ctx.clearRect(0, 0, w, h);
-      for (let p of particles) {
-        let dx = mouse.x - p.x;
-        let dy = mouse.y - p.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
-        let force = Math.min(200 / (dist || 1), 5);
-        let angle = Math.atan2(dy, dx);
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        p.vx += Math.cos(angle) * force * 0.1;
-        p.vy += Math.sin(angle) * force * 0.1;
-
-        p.vx *= 0.9;
-        p.vy *= 0.9;
-
-        p.x += p.vx;
-        p.y += p.vy;
-
+      for (let i = 0; i < 100; i++) {
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "#00ffff";
+        ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,0.5)';
         ctx.fill();
       }
       requestAnimationFrame(draw);
     }
-
     draw();
   </script>
 </body>
