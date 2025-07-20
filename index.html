@@ -5,95 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NEXUTHA</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #0d0d0d;
-      color: #fff;
-      font-family: "Helvetica Neue", sans-serif;
-      overflow-x: hidden;
-    }
-    section, header, footer {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-      animation: fadeIn 1.2s ease forwards;
-      opacity: 0;
-    }
-    header {
-      text-align: center;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 24px;
-      margin: 10px;
-      background: #3f61ff;
-      color: white;
-      border-radius: 5px;
-      text-decoration: none;
-    }
-    .logos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      opacity: 0.8;
-    }
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .feature {
-      flex: 1 1 280px;
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .blue-section {
-      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center / cover no-repeat;
-      text-align: center;
-      padding: 100px 20px;
-      color: white;
-    }
-    .faq h3 {
-      cursor: pointer;
-      margin: 10px 0;
-    }
-    .faq p {
-      display: none;
-      margin-bottom: 20px;
-    }
-    footer {
-      font-size: 0.9em;
-      text-align: center;
-      border-top: 1px solid #333;
-      margin-top: 40px;
-    }
-    canvas {
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9999;
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+    html, body { margin:0; padding:0; background:#0d0d0d; color:#fff; font-family: "Helvetica Neue", sans-serif; overflow-x: hidden;}
+    section, header, footer { padding: 60px 20px; max-width: 1000px; margin: auto; animation: fadeIn 1.2s ease forwards; opacity: 0;}
+    header { text-align: center; }
+    h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .btn { display: inline-block; padding: 12px 24px; margin: 10px; background: #3f61ff; color: white; border-radius: 5px; text-decoration: none; }
+    .logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; opacity: 0.8; }
+    .features { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .feature { flex: 1 1 280px; background: #1a1a1a; padding: 20px; border-radius: 10px; }
+    .blue-section { background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center / cover no-repeat; text-align: center; padding: 100px 20px; color: white; }
+    .faq h3 { cursor: pointer; margin: 10px 0; }
+    .faq p { display: none; margin-bottom: 20px; }
+    footer { font-size: 0.9em; text-align: center; border-top: 1px solid #333; margin-top: 40px; }
+    canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
+    @keyframes fadeIn { to { opacity: 1; } }
   </style>
 </head>
 <body>
-
 <canvas id="orbCanvas" width="100" height="100"></canvas>
 
 <header>
   <h1>ビジネスを変革するAIの力</h1>
-  <p>データを“行動”に変えるAI活用時代のスタート</p>
-  <a href="#" class="btn">無料で試す</a>
+  <p>データで可能性を拡張するAI時代のスタート</p>
+  <a href="music.html" class="btn">音楽リリースを見る</a>
   <a href="#" class="btn" style="background:#666;">動画を見る</a>
 </header>
 
@@ -108,84 +42,37 @@
 
 <section>
   <div class="features">
-    <div class="feature">
-      <h2>AI予測</h2>
-      <p>あなたのビジネスに最適な予測を提供します。</p>
-    </div>
-    <div class="feature">
-      <h2>連携と統合</h2>
-      <p>既存のシステムと簡単に統合できます。</p>
-    </div>
-    <div class="feature">
-      <h2>即時インサイト</h2>
-      <p>重要な意思決定をAIがリアルタイムで支援。</p>
-    </div>
+    <div class="feature"><h2>AI予測</h2><p>最適な予測でビジネスを支援します。</p></div>
+    <div class="feature"><h2>連携と統合</h2><p>既存のシステムとスムーズに統合可能。</p></div>
+    <div class="feature"><h2>即時インサイト</h2><p>リアルタイムにAIが意思決定を支援。</p></div>
   </div>
 </section>
 
 <section class="blue-section">
   <h2>NEXUTHAの体験</h2>
-  <p>業界横断のAIソリューションをあなたに</p>
+  <p>業界を越えたAIソリューションをあなたに</p>
 </section>
 
-<section>
-  <h2>よくある質問</h2>
+<section><h2>よくある質問</h2>
   <div class="faq">
-    <h3 onclick="toggleFAQ(this)">AIはどのように動作しますか？</h3>
-    <p>機械学習を用いて、入力されたデータを分析・予測します。</p>
-
-    <h3 onclick="toggleFAQ(this)">既存のツールと連携できますか？</h3>
-    <p>はい、多くの外部サービスとAPIを通じて接続可能です。</p>
-
-    <h3 onclick="toggleFAQ(this)">データは安全ですか？</h3>
-    <p>エンタープライズ向けの暗号化とバックアップ体制を整えています。</p>
+    <h3 onclick="toggleFAQ(this)">AIはどう動作しますか？</h3><p>機械学習で予測と分析を行います。</p>
+    <h3 onclick="toggleFAQ(this)">他のツールと連携できますか？</h3><p>API接続で柔軟に対応可能です。</p>
+    <h3 onclick="toggleFAQ(this)">データは安全ですか？</h3><p>エンタープライズ水準の暗号化を施しています。</p>
   </div>
 </section>
 
-<footer>
-  <p>© 2025 NEXUTHA. All rights reserved. | プライバシーポリシー | 利用規約</p>
-</footer>
+<footer><p>© 2025 NEXUTHA. All rights reserved. | プライバシーポリシー | 利用規約</p></footer>
 
 <script>
-  function toggleFAQ(el) {
-    const p = el.nextElementSibling;
-    p.style.display = p.style.display === 'block' ? 'none' : 'block';
-  }
-
-  // マウス追従レインボー光球
-  const canvas = document.getElementById('orbCanvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  let hue = 0;
-  let x = 0, y = 0;
-  let isMoving = false;
-
-  document.addEventListener('mousemove', e => {
-    x = e.clientX;
-    y = e.clientY;
-    isMoving = true;
-  });
-
-  setInterval(() => {
-    if (isMoving) hue += 3;
-    isMoving = false;
-  }, 30);
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.beginPath();
-    ctx.arc(x, y, 20, 0, Math.PI * 2);
-    ctx.fillStyle = `hsl(${hue}, 100%, 60%)`;
-    ctx.shadowColor = ctx.fillStyle;
-    ctx.shadowBlur = 20;
-    ctx.fill();
-    requestAnimationFrame(draw);
-  }
-
-  draw();
+  function toggleFAQ(el){const p=el.nextElementSibling;p.style.display=p.style.display==='block'?'none':'block';}
+  const canvas=document.getElementById('orbCanvas');const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  let hue=0,x=0,y=0,isMoving=false;
+  document.addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY;isMoving=true;});
+  setInterval(()=>{if(isMoving)hue+=3;isMoving=false;},30);
+  function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.beginPath();
+  ctx.arc(x,y,20,0,Math.PI*2);ctx.fillStyle=`hsl(${hue},100%,60%)`;
+  ctx.shadowColor=ctx.fillStyle;ctx.shadowBlur=20;ctx.fill();requestAnimationFrame(draw);}draw();
 </script>
-
 </body>
 </html>
