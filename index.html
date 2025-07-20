@@ -1,93 +1,165 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEXUTHA</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neuros - AI Powered Analytics</title>
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
+    header, section, footer {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    header {
+      text-align: center;
+      background: #f5f7ff;
+    }
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+    }
+    .btn {
+      padding: 12px 24px;
+      background: #3f61ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      margin: 10px;
+      display: inline-block;
+    }
+    .logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      opacity: 0.7;
+    }
+    .features {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .feature {
+      flex: 1 1 300px;
+      background: #eef1ff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .blue-section {
+      background: #1b2bcc;
       color: white;
       text-align: center;
-      height: 100%;
+      padding: 80px 20px;
     }
-
-    header {
-      padding: 100px 20px 40px;
-      font-size: 2.8em;
-      font-weight: bold;
-      text-shadow: 0 0 10px #000000;
+    .faq {
+      margin-top: 20px;
     }
-
-    section {
-      max-width: 800px;
-      margin: auto;
-      padding: 30px;
-      font-size: 1.2em;
-      line-height: 1.7;
+    .faq h3 {
+      cursor: pointer;
+      margin-bottom: 5px;
     }
-
+    .faq p {
+      display: none;
+      margin: 0 0 20px 0;
+    }
     footer {
-      margin-top: 60px;
-      padding: 20px;
       font-size: 0.9em;
-      color: #ccc;
-    }
-
-    .ball {
-      position: fixed;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      animation: rainbow 5s linear infinite;
-      mix-blend-mode: lighten;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-    }
-
-    @keyframes rainbow {
-      0% { background: red; }
-      16% { background: orange; }
-      33% { background: yellow; }
-      50% { background: green; }
-      66% { background: blue; }
-      83% { background: indigo; }
-      100% { background: violet; }
+      color: #555;
+      border-top: 1px solid #ccc;
     }
   </style>
 </head>
 <body>
-  <header>Welcome to NEXUTHA</header>
+
+  <header>
+    <h1>Revolutionizing Business Decisions with AI</h1>
+    <p>Harness AI to transform your business data into actionable insights</p>
+    <a href="#" class="btn">Start your free trial</a>
+    <a href="#" class="btn" style="background:#ccc;color:#111;">Watch Video</a>
+  </header>
 
   <section>
-    <h2>About NEXUTHA</h2>
-    <p>
-      NEXUTHAは、AI・音楽・自動化・クラフトを融合し、進化する人間の思考支援AIを開発・実験・発信する個人スタジオです。<br>
-      Obsidianを起点にローカルLLMを駆動、情報圧縮と再生成、Suno音楽リリース、GitHubによる自律Web運用まで、すべてローカルか無料構成で実行しています。
-    </p>
-    <p>
-      <strong>🪩 Vision：</strong>依頼不要で世界を再定義する。<br>
-      <strong>🪄 Mission：</strong>誰よりも早く、誰よりも正確に「個を拡張化AI構造体」へ実装・伝播する。
-    </p>
+    <div class="logos">
+      <img src="https://via.placeholder.com/100x40?text=Logo" />
+      <img src="https://via.placeholder.com/100x40?text=Logo" />
+      <img src="https://via.placeholder.com/100x40?text=Logo" />
+      <img src="https://via.placeholder.com/100x40?text=Logo" />
+    </div>
   </section>
 
-  <footer>© 2025 NEXUTHA. All Rights Reserved.</footer>
+  <section>
+    <div class="features">
+      <div class="feature">
+        <h2>AI-Driven Forecasts</h2>
+        <p>Gain unmatched forecasting accuracy for your business growth.</p>
+      </div>
+      <div class="feature">
+        <h2>Connect & Streamline</h2>
+        <p>Seamlessly connect data across your entire system.</p>
+      </div>
+      <div class="feature">
+        <h2>Instant Insights</h2>
+        <p>Insights on-demand with AI-driven analytics.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="blue-section">
+    <h2>The Neuros Experience</h2>
+    <p>Delivering top-notch AI solutions across all industries</p>
+  </section>
+
+  <section>
+    <h2>Insights Made Easy</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Predictive Power</h3>
+        <p>Future-proof your business decisions with AI insights.</p>
+      </div>
+      <div class="feature">
+        <h3>Connect with Ease</h3>
+        <p>Integrate smoothly with your current systems.</p>
+      </div>
+      <div class="feature">
+        <h3>Data Safe Haven</h3>
+        <p>Enterprise-grade security for all your analytics.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>FAQ</h2>
+    <div class="faq">
+      <h3 onclick="toggleFAQ(this)">How does the AI-powered analytics work?</h3>
+      <p>This system uses machine learning models to analyze your data.</p>
+
+      <h3 onclick="toggleFAQ(this)">Can I integrate this with my existing tools?</h3>
+      <p>Yes, with APIs and easy integrations.</p>
+
+      <h3 onclick="toggleFAQ(this)">Is my data safe?</h3>
+      <p>We use industry-standard encryption and backups.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2024 NEUROS. All rights reserved. | Privacy Policy | Terms</p>
+  </footer>
 
   <script>
-    const ball = document.createElement("div");
-    ball.classList.add("ball");
-    document.body.appendChild(ball);
-
-    document.addEventListener("mousemove", (e) => {
-      ball.style.left = `${e.clientX - 12}px`;
-      ball.style.top = `${e.clientY - 12}px`;
-    });
+    function toggleFAQ(el) {
+      const p = el.nextElementSibling;
+      p.style.display = p.style.display === 'block' ? 'none' : 'block';
+    }
   </script>
+
 </body>
 </html>
