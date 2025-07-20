@@ -2,110 +2,120 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEXUTHA</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      background: #0d0d0d url('https://images.unsplash.com/photo-1549887534-217c57f4658d?auto=format&fit=crop&w=1200&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      font-family: "Helvetica Neue", sans-serif;
-      overflow-x: hidden;
-    }
-    section, header, footer {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-      animation: fadeIn 1.2s ease forwards;
-      opacity: 0;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-    }
-    header { text-align: center; }
-    h1 { font-size: 2.5rem; margin-bottom: 10px; }
-    .btn {
-      display: inline-block;
-      padding: 12px 24px;
-      margin: 10px;
-      background: #3f61ff;
+      background-color: #000;
       color: white;
-      border-radius: 5px;
-      text-decoration: none;
-    }
-    .logos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      opacity: 0.8;
-    }
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .feature {
-      flex: 1 1 280px;
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .blue-section {
-      background: rgba(0,0,0,0.5);
+      font-family: Arial, sans-serif;
       text-align: center;
-      padding: 100px 20px;
+    }
+    .container {
+      padding: 4em 2em;
+    }
+    .button {
+      background: #005eff;
       color: white;
+      padding: 0.75em 1.5em;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      margin: 1em 0;
     }
-    .faq h3 { cursor: pointer; margin: 10px 0; }
-    .faq p { display: none; margin-bottom: 20px; }
-    footer { font-size: 0.9em; text-align: center; border-top: 1px solid #333; margin-top: 40px; }
-    canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
-    .lang-switch { position: absolute; top: 20px; right: 20px; }
-    .x-button {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background-color: #1da1f2;
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1em;
+      margin-top: 2em;
+    }
+    .card {
+      background-color: #111;
+      border: 1px solid #333;
+      padding: 1em;
+      width: 280px;
+      border-radius: 8px;
+    }
+    .lang-button {
+      position: absolute;
+      top: 1em;
+      right: 1em;
+      background: #222;
       color: white;
-      padding: 10px 16px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      z-index: 9999;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border: 1px solid #555;
+      padding: 0.4em 0.8em;
+      cursor: pointer;
+      border-radius: 4px;
     }
-    .x-button:hover {
-      background-color: #0c85d0;
-    }
-    @keyframes fadeIn { to { opacity: 1; } }
   </style>
 </head>
 <body>
-<div style="position: fixed; top: 20px; left: 20px; z-index: 999;">
-  <a href="https://x.com/nexutha1" target="_blank" style="
-    background: linear-gradient(135deg, #1da1f2, #0d8ddb);
-    color: white;
-    padding: 10px 16px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-family: sans-serif;
-    text-decoration: none;
-    box-shadow: 0 0 8px rgba(0,0,0,0.3);
-    transition: all 0.3s ease;">X（Twitter）</a>
-</div>  <a href="https://x.com/nexutha1" target="_blank" style="
-    background: linear-gradient(135deg, #1da1f2, #0d8ddb);
-    color: white;
-    padding: 10px 16px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-family: sans-serif;
-    text-decoration: none;
-    box-shadow: 0 0 8px rgba(0,0,0,0.3);
-    transition: all 0.3s ease;">
-    X（Twitter）
-  </a>
-<canvas id="orbCanvas" width="100" height="100"></canvas>
+  <button class="lang-button" onclick="toggleLanguage()"><span id="langLabel">ENGLISH</span></button>
+  <div class="container">
+    <h1 id="title">ビジネスを変革するAIの力</h1>
+    <p id="subtitle">データ駆動型で革新を始めましょう</p>
+    <button class="button" id="mainButton">音楽リリースを見る</button>
+    <div class="card-grid">
+      <div class="card">
+        <h3 id="card1Title">AI予測</h3>
+        <p id="card1Text">精密な予測でビジネス成長を支援します。</p>
+      </div>
+      <div class="card">
+        <h3 id="card2Title">連携と統合</h3>
+        <p id="card2Text">既存のシステムとスムーズに統合が可能。</p>
+      </div>
+      <div class="card">
+        <h3 id="card3Title">即時インサイト</h3>
+        <p id="card3Text">リアルタイムにAIが意思決定を支援。</p>
+      </div>
+    </div>
+    <p style="margin-top:3em;">NEXUTHAの体験</p>
+  </div>
+  <script>
+    let lang = 'ja';
+    const content = {
+      ja: {
+        lang: 'ENGLISH',
+        title: 'ビジネスを変革するAIの力',
+        subtitle: 'データ駆動型で革新を始めましょう',
+        button: '音楽リリースを見る',
+        cards: [
+          ['AI予測', '精密な予測でビジネス成長を支援します。'],
+          ['連携と統合', '既存のシステムとスムーズに統合が可能。'],
+          ['即時インサイト', 'リアルタイムにAIが意思決定を支援。']
+        ]
+      },
+      en: {
+        lang: '日本語',
+        title: 'The Power of AI to Transform Business',
+        subtitle: 'Start the era of data-driven innovation',
+        button: 'View Music Releases',
+        cards: [
+          ['AI Forecasting', 'Drive business growth with accurate predictions.'],
+          ['Integration', 'Seamlessly connect with your existing systems.'],
+          ['Real-time Insights', 'Make smarter decisions with instant analytics.']
+        ]
+      }
+    };
 
+    function toggleLanguage() {
+      lang = lang === 'ja' ? 'en' : 'ja';
+      const c = content[lang];
+      document.getElementById('langLabel').innerText = c.lang;
+      document.getElementById('title').innerText = c.title;
+      document.getElementById('subtitle').innerText = c.subtitle;
+      document.getElementById('mainButton').innerText = c.button;
+      document.getElementById('card1Title').innerText = c.cards[0][0];
+      document.getElementById('card1Text').innerText = c.cards[0][1];
+      document.getElementById('card2Title').innerText = c.cards[1][0];
+      document.getElementById('card2Text').innerText = c.cards[1][1];
+      document.getElementById('card3Title').innerText = c.cards[2][0];
+      document.getElementById('card3Text').innerText = c.cards[2][1];
+    }
+  </script>
+</body>
+</html>
