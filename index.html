@@ -1,82 +1,80 @@
+[↑上のHTML全文ここにコピペ（省略）]
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEXUTHA</title>
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: black;
-      height: 100%;
-    }
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
-    .text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 2em;
-      color: white;
-      font-family: 'Helvetica Neue', sans-serif;
-      z-index: 1;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f0f0f;
+      color: #ffffff;
       text-align: center;
+    }
+
+    header {
+      padding: 80px 20px 40px;
+      background: linear-gradient(120deg, #0ff, #80f);
+      color: white;
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+      text-shadow: 0 0 10px #000;
+    }
+
+    .about-section {
+      padding: 100px 20px;
+      background: #1a1a1a;
+      color: white;
+    }
+
+    .about-section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .about-section p {
+      font-size: 1em;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6em;
+      color: #ccc;
+    }
+
+    footer {
+      padding: 40px 20px;
+      background: #000;
+      color: #666;
+      font-size: 0.8em;
     }
   </style>
 </head>
 <body>
-  <canvas id="canvas"></canvas>
-  <div class="text">Hello, this is NEXUTHA.</div>
-  <script>
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 
-    let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
-    let orb = { x: canvas.width / 2, y: canvas.height / 2 };
+  <header>
+    <h1>Welcome to NEXUTHA</h1>
+  </header>
 
-    let hue = 0;
+  <section id="about" class="about-section">
+    <h2>About NEXUTHA</h2>
+    <p>
+      NEXUTHAは、AI・音楽・自動化・クラフトを融合し、進化する人間の思考支援AIを開発・実装・発信する個人ブランドです。<br>
+      Obsidianを起点にローカルLLM連携、自動記事生成、Suno音楽リリース、GitHubによる自律Web運用まで、
+      <strong>すべてローカル完結＆無料構成</strong>で実現しています。<br><br>
+      👉 Vision：構築で世界を再定義する。<br>
+      👉 Mission：誰よりも早く、誰よりも正確に「自動収益化AI構造」を実装・伝播する。
+    </p>
+  </section>
 
-    window.addEventListener("mousemove", (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
+  <footer>
+    © 2025 NEXUTHA. All Rights Reserved.
+  </footer>
 
-    function animate() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // オーブをマウスに滑らかに追従
-      orb.x += (mouse.x - orb.x) * 0.08;
-      orb.y += (mouse.y - orb.y) * 0.08;
-
-      hue = (hue + 2) % 360;
-
-      let gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, 80);
-      gradient.addColorStop(0, `hsla(${hue}, 100%, 70%, 1)`);
-      gradient.addColorStop(1, `hsla(${(hue + 60) % 360}, 100%, 50%, 0)`);
-
-      ctx.beginPath();
-      ctx.fillStyle = gradient;
-      ctx.arc(orb.x, orb.y, 80, 0, Math.PI * 2);
-      ctx.fill();
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-  </script>
 </body>
 </html>
