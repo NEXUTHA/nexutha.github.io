@@ -8,11 +8,10 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
-      background-color: black;
+      background: black;
       height: 100%;
     }
     canvas {
-      display: block;
       position: absolute;
       top: 0;
       left: 0;
@@ -40,62 +39,34 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    let particles = [];
+    let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+    let orb = { x: canvas.width / 2, y: canvas.height / 2 };
 
-    let mouse = {
-      x: canvas.width / 2,
-      y: canvas.height / 2
-    };
+    let hue = 0;
 
-    window.addEventListener("mousemove", function(e) {
+    window.addEventListener("mousemove", (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     });
-
-    class Particle {
-      constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 1.5;
-        this.speedY = (Math.random() - 0.5) * 1.5;
-        this.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
-        this.alpha = 1;
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        this.alpha -= 0.015;
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color.replace(")", `, ${this.alpha})`).replace("hsl", "hsla");
-        ctx.fill();
-      }
-
-      isDead() {
-        return this.alpha <= 0;
-      }
-    }
 
     function animate() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // マウス追従パーティクル発生
-      for (let i = 0; i < 3; i++) {
-        particles.push(new Particle(mouse.x, mouse.y));
-      }
+      // オーブをマウスに滑らかに追従
+      orb.x += (mouse.x - orb.x) * 0.08;
+      orb.y += (mouse.y - orb.y) * 0.08;
 
-      // 更新＆描画
-      particles = particles.filter(p => {
-        p.update();
-        p.draw();
-        return !p.isDead();
-      });
+      hue = (hue + 2) % 360;
+
+      let gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, 80);
+      gradient.addColorStop(0, `hsla(${hue}, 100%, 70%, 1)`);
+      gradient.addColorStop(1, `hsla(${(hue + 60) % 360}, 100%, 50%, 0)`);
+
+      ctx.beginPath();
+      ctx.fillStyle = gradient;
+      ctx.arc(orb.x, orb.y, 80, 0, Math.PI * 2);
+      ctx.fill();
 
       requestAnimationFrame(animate);
     }
