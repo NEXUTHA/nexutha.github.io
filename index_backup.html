@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEXUTHA</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+    }
+    .lang-switch {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .lang-switch button {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      background: #444;
+      color: #fff;
+      font-weight: bold;
+    }
+    .x-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+    }
+    .x-button a {
+      background: linear-gradient(135deg, #1da1f2, #0d8ddb);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-family: sans-serif;
+      text-decoration: none;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .container {
+      max-width: 800px;
+      margin: 100px auto 40px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 20px;
+    }
+    .card {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      width: 220px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    footer {
+      margin-top: 80px;
+      font-size: 12px;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="x-button">
+    <a href="https://x.com/nexutha1" target="_blank">X（Twitter）</a>
+  </div>
+
+  <div class="lang-switch">
+    <button onclick="switchLang()">ENGLISH</button>
+  </div>
+
+  <div class="container" id="content-ja">
+    <h1>ビジネスを変革するAIの力</h1>
+    <p>データで駆動する革新の時代をスタート</p>
+    <button onclick="alert('音楽リリースへ')">音楽リリースを見る</button>
+
+    <div class="cards">
+      <div class="card"><h3>AI予測</h3><p>精度の予測でビジネスを成長させます。</p></div>
+      <div class="card"><h3>連携と統合</h3><p>既存のシステムとスムーズに接続可能。</p></div>
+      <div class="card"><h3>即時インサイト</h3><p>リアルタイムな分析で意思決定を支援。</p></div>
+    </div>
+
+    <footer>NEXUTHAの体験<br/>未来を紡ぐヒカリ｜リリースへの導き</footer>
+  </div>
+
+  <div class="container" id="content-en" style="display: none;">
+    <h1>The Power of AI to Transform Business</h1>
+    <p>Start the era of data-driven innovation</p>
+    <button onclick="alert('View Music Releases')">View Music Releases</button>
+
+    <div class="cards">
+      <div class="card"><h3>AI Forecasting</h3><p>Drive business growth with accurate predictions.</p></div>
+      <div class="card"><h3>Integration</h3><p>Seamlessly connect with your existing systems.</p></div>
+      <div class="card"><h3>Real-time Insights</h3><p>Make smarter decisions with instant analytics.</p></div>
+    </div>
+
+    <footer>Experience NEXUTHA<br/>Guiding light into the future release</footer>
+  </div>
+
+  <script>
+    function switchLang() {
+      const ja = document.getElementById("content-ja");
+      const en = document.getElementById("content-en");
+      if (ja.style.display === "none") {
+        ja.style.display = "block";
+        en.style.display = "none";
+      } else {
+        ja.style.display = "none";
+        en.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
