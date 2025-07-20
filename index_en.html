@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEXUTHA</title>
+  <style>
+    body { margin: 0; padding: 0; background: #0d0d0d url('https://images.unsplash.com/photo-1549887534-217c57f4658d?auto=format&fit=crop&w=1200&q=80') no-repeat center center fixed;
+      background-size: cover; color: #fff; font-family: "Helvetica Neue", sans-serif; overflow-x: hidden; }
+    section, header, footer { padding: 60px 20px; max-width: 1000px; margin: auto; animation: fadeIn 1.2s ease forwards; opacity: 0; background: rgba(0,0,0,0.6); border-radius: 10px; }
+    header { text-align: center; }
+    h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .btn { display: inline-block; padding: 12px 24px; margin: 10px; background: #3f61ff; color: white; border-radius: 5px; text-decoration: none; }
+    .features { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .feature { flex: 1 1 280px; background: #1a1a1a; padding: 20px; border-radius: 10px; }
+    canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
+    .lang-switch { position: absolute; top: 20px; right: 20px; }
+    @keyframes fadeIn { to { opacity: 1; } }
+  </style>
+</head>
+<body>
+<canvas id="orbCanvas" width="100" height="100"></canvas>
+
+<div class="lang-switch">
+  <a class="btn" href="index.html">日本語</a>
+</div>
+
+<header>
+  <h1>The Power of AI to Transform Business</h1>
+  <p>Start the era of data-driven innovation</p>
+  <a href="music.html" class="btn">View Music Releases</a>
+</header>
+
+<section class="features">
+  <div class="feature"><h2>AI Forecasting</h2><p>Drive business growth with accurate predictions.</p></div>
+  <div class="feature"><h2>Integration</h2><p>Seamlessly connect with your existing systems.</p></div>
+  <div class="feature"><h2>Real-time Insights</h2><p>Make smarter decisions with instant analytics.</p></div>
+</section>
+
+<script>
+  const canvas=document.getElementById('orbCanvas');const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  let hue=0,x=0,y=0,isMoving=false;
+  document.addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY;isMoving=true;});
+  setInterval(()=>{if(isMoving)hue+=3;isMoving=false;},30);
+  function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.beginPath();
+  ctx.arc(x,y,20,0,Math.PI*2);ctx.fillStyle=`hsl(${hue},100%,60%)`;
+  ctx.shadowColor=ctx.fillStyle;ctx.shadowBlur=20;ctx.fill();requestAnimationFrame(draw);}draw();
+</script>
+</body>
+</html>

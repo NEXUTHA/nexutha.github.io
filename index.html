@@ -5,30 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NEXUTHA</title>
   <style>
-    html, body { margin:0; padding:0; background:#0d0d0d; color:#fff; font-family: "Helvetica Neue", sans-serif; overflow-x: hidden;}
-    section, header, footer { padding: 60px 20px; max-width: 1000px; margin: auto; animation: fadeIn 1.2s ease forwards; opacity: 0;}
-    header { text-align: center; }
-    h1 { font-size: 2.5rem; margin-bottom: 10px; }
-    .btn { display: inline-block; padding: 12px 24px; margin: 10px; background: #3f61ff; color: white; border-radius: 5px; text-decoration: none; }
-    .logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; opacity: 0.8; }
-    .features { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-    .feature { flex: 1 1 280px; background: #1a1a1a; padding: 20px; border-radius: 10px; }
-    .blue-section { background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center / cover no-repeat; text-align: center; padding: 100px 20px; color: white; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #0d0d0d url('https://images.unsplash.com/photo-1549887534-217c57f4658d?auto=format&fit=crop&w=1200&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      font-family: "Helvetica Neue", sans-serif;
+      overflow-x: hidden;
+    }
+    section, header, footer {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeIn 1.2s ease forwards;
+      opacity: 0;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+    }
+    header {
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 10px;
+      background: #3f61ff;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      opacity: 0.8;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .feature {
+      flex: 1 1 280px;
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .blue-section {
+      background: rgba(0,0,0,0.5);
+      text-align: center;
+      padding: 100px 20px;
+      color: white;
+    }
     .faq h3 { cursor: pointer; margin: 10px 0; }
     .faq p { display: none; margin-bottom: 20px; }
     footer { font-size: 0.9em; text-align: center; border-top: 1px solid #333; margin-top: 40px; }
     canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; }
+    .lang-switch { position: absolute; top: 20px; right: 20px; }
     @keyframes fadeIn { to { opacity: 1; } }
   </style>
 </head>
 <body>
 <canvas id="orbCanvas" width="100" height="100"></canvas>
 
+<div class="lang-switch">
+  <a class="btn" href="index_en.html">ENGLISH</a>
+</div>
+
 <header>
   <h1>ビジネスを変革するAIの力</h1>
   <p>データで可能性を拡張するAI時代のスタート</p>
   <a href="music.html" class="btn">音楽リリースを見る</a>
-  <a href="#" class="btn" style="background:#666;">動画を見る</a>
 </header>
 
 <section>
