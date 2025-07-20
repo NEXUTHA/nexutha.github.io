@@ -40,7 +40,7 @@
   <script>
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
-    let w, h, particles;
+    let w, h, particles = [], mouse = { x: 0, y: 0 };
 
     function init() {
       w = canvas.width = window.innerWidth;
@@ -48,28 +48,44 @@
       particles = Array.from({ length: 100 }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 1.5,
-        vy: (Math.random() - 0.5) * 1.5,
-        r: Math.random() * 2 + 1
+        r: Math.random() * 2 + 1,
+        vx: 0,
+        vy: 0
       }));
     }
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
       for (let p of particles) {
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        const angle = Math.atan2(dy, dx);
+        const force = Math.min(100 / (dist || 1), 5);
+
+        p.vx += Math.cos(angle) * force * 0.05;
+        p.vy += Math.sin(angle) * force * 0.05;
+
+        p.vx *= 0.95;
+        p.vy *= 0.95;
+
+        p.x += p.vx;
+        p.y += p.vy;
+
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = "#0ff";
         ctx.fill();
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 0 || p.y > h) p.vy *= -1;
       }
       requestAnimationFrame(draw);
     }
 
     window.addEventListener("resize", init);
+    window.addEventListener("mousemove", e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
     init();
     draw();
   </script>
