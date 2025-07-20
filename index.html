@@ -15,16 +15,16 @@
     }
     canvas {
       display: block;
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       z-index: -1;
     }
     h1 {
-      position: relative;
+      position: absolute;
+      width: 100%;
       text-align: center;
       top: 40%;
-      transform: translateY(-50%);
       font-size: 3em;
       animation: fadeIn 2s ease-out;
     }
@@ -40,53 +40,55 @@
   <script>
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
-    let w, h, particles = [], mouse = { x: 0, y: 0 };
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
 
-    function init() {
+    const mouse = { x: w / 2, y: h / 2 };
+
+    const particles = Array.from({ length: 120 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 2 + 1,
+      vx: 0,
+      vy: 0
+    }));
+
+    window.addEventListener("resize", () => {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
-      particles = Array.from({ length: 100 }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: Math.random() * 2 + 1,
-        vx: 0,
-        vy: 0
-      }));
-    }
+    });
+
+    window.addEventListener("mousemove", e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
       for (let p of particles) {
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        const angle = Math.atan2(dy, dx);
-        const force = Math.min(100 / (dist || 1), 5);
+        let dx = mouse.x - p.x;
+        let dy = mouse.y - p.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        let force = Math.min(200 / (dist || 1), 5);
+        let angle = Math.atan2(dy, dx);
 
-        p.vx += Math.cos(angle) * force * 0.05;
-        p.vy += Math.sin(angle) * force * 0.05;
+        p.vx += Math.cos(angle) * force * 0.1;
+        p.vy += Math.sin(angle) * force * 0.1;
 
-        p.vx *= 0.95;
-        p.vy *= 0.95;
+        p.vx *= 0.9;
+        p.vy *= 0.9;
 
         p.x += p.vx;
         p.y += p.vy;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "#0ff";
+        ctx.fillStyle = "#00ffff";
         ctx.fill();
       }
       requestAnimationFrame(draw);
     }
 
-    window.addEventListener("resize", init);
-    window.addEventListener("mousemove", e => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-
-    init();
     draw();
   </script>
 </body>
