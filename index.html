@@ -10,7 +10,7 @@
       padding: 0;
       height: 100%;
       font-family: 'Helvetica Neue', sans-serif;
-      background: linear-gradient(to bottom, #000000, #111111);
+      background: #000;
       color: #fff;
       overflow: hidden;
     }
@@ -19,6 +19,7 @@
       top: 0;
       left: 0;
       z-index: -1;
+      pointer-events: none;
     }
     .center-text {
       position: absolute;
@@ -82,14 +83,14 @@
   </div>
 
   <script>
-    const jaText = \`
+    const jaText = `
       <h1>ビジネスを変革するAIの力</h1>
       <p>データで加速する革新の時代をスタート</p>
-    \`;
-    const enText = \`
+    `;
+    const enText = `
       <h1>The Power of AI to Transform Business</h1>
       <p>Welcome to the era of data-driven innovation</p>
-    \`;
+    `;
     let isEnglish = false;
     function switchLang() {
       document.getElementById('main-text').innerHTML = isEnglish ? jaText : enText;
@@ -97,31 +98,29 @@
       isEnglish = !isEnglish;
     }
 
-    // Rainbow 光球：確実に表示させるためDOM読み込み後に初期化
-    document.addEventListener('DOMContentLoaded', () => {
+    window.onload = () => {
       const canvas = document.getElementById('bg');
       const ctx = canvas.getContext('2d');
-      let width, height;
       function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
       }
-      window.addEventListener('resize', resize);
       resize();
+      window.addEventListener('resize', resize);
 
       let hue = 0;
-      document.addEventListener('mousemove', e => {
-        ctx.clearRect(0, 0, width, height);
-        const gradient = ctx.createRadialGradient(e.clientX, e.clientY, 0, e.clientX, e.clientY, 120);
-        gradient.addColorStop(0, \`hsl(\${hue}, 100%, 70%)\`);
+      document.addEventListener('mousemove', (e) => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const gradient = ctx.createRadialGradient(e.clientX, e.clientY, 0, e.clientX, e.clientY, 150);
+        gradient.addColorStop(0, `hsl(${hue}, 100%, 70%)`);
         gradient.addColorStop(1, 'transparent');
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(e.clientX, e.clientY, 120, 0, Math.PI * 2);
+        ctx.arc(e.clientX, e.clientY, 150, 0, Math.PI * 2);
         ctx.fill();
         hue = (hue + 2) % 360;
       });
-    });
+    };
   </script>
 </body>
 </html>
