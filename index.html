@@ -9,8 +9,8 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background: #000;
       font-family: 'Helvetica Neue', sans-serif;
+      background: linear-gradient(to bottom, #000000, #111111);
       color: #fff;
       overflow: hidden;
     }
@@ -97,28 +97,30 @@
       isEnglish = !isEnglish;
     }
 
-    // Canvas rainbow ball
-    const canvas = document.getElementById('bg');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
+    // Rainbow 光球：確実に表示させるためDOM読み込み後に初期化
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('bg');
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
 
-    let hue = 0;
-    document.addEventListener('mousemove', e => {
-      ctx.clearRect(0, 0, width, height);
-      const gradient = ctx.createRadialGradient(e.clientX, e.clientY, 0, e.clientX, e.clientY, 120);
-      gradient.addColorStop(0, \`hsl(\${hue}, 100%, 70%)\`);
-      gradient.addColorStop(1, 'transparent');
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(e.clientX, e.clientY, 120, 0, Math.PI * 2);
-      ctx.fill();
-      hue += 2;
+      let hue = 0;
+      document.addEventListener('mousemove', e => {
+        ctx.clearRect(0, 0, width, height);
+        const gradient = ctx.createRadialGradient(e.clientX, e.clientY, 0, e.clientX, e.clientY, 120);
+        gradient.addColorStop(0, \`hsl(\${hue}, 100%, 70%)\`);
+        gradient.addColorStop(1, 'transparent');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(e.clientX, e.clientY, 120, 0, Math.PI * 2);
+        ctx.fill();
+        hue = (hue + 2) % 360;
+      });
     });
   </script>
 </body>
