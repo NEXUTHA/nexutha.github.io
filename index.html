@@ -5,86 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEXUTHA</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #000;
-      color: #fff;
-      overflow-x: hidden;
+    html, body {
+      margin: 0; padding: 0; overflow: hidden;
+      font-family: "Arial", sans-serif;
+      background: black; color: white;
     }
-
     canvas {
       position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: -1;
-      top: 0;
-      left: 0;
     }
-
-    header, section, footer {
-      padding: 2em;
+    header, main, section, footer {
+      padding: 2rem;
       text-align: center;
     }
-
-    .feature {
-      margin: 2em 0;
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      margin: 1rem auto; padding: 1rem;
+      border-radius: 1rem; width: 80%;
     }
-
+    .music-links {
+      margin-top: 2rem;
+    }
+    .artist {
+      margin-bottom: 1.5rem;
+    }
+    .music-button {
+      display: inline-block;
+      margin: 0.3rem;
+      padding: 0.5rem 1.2rem;
+      background: #1DB954;
+      color: black;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+    }
     #lang-switch {
-      margin-top: 1em;
-      padding: 0.5em 1em;
-      font-size: 1em;
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: #444; color: #fff; border: none;
+      padding: 0.5rem 1rem; border-radius: 5px;
       cursor: pointer;
     }
-
-    .experience img {
-      width: 100%;
-      max-width: 600px;
-      border-radius: 12px;
+    a.music-button:hover {
+      opacity: 0.85;
     }
   </style>
 </head>
 <body>
   <canvas id="bg"></canvas>
-
+  <button id="lang-switch" onclick="switchLanguage()">ENGLISH</button>
   <header>
-    <h1 id="main-title">NEXUTHAへようこそ</h1>
-    <p id="subtitle">AI × 音楽 × 自由</p>
-    <button id="lang-switch">ENGLISH</button>
+    <h1 id="main-title">ようこそ、NEXUTHAへ</h1>
+    <p id="subtitle">未来を創るAIプラットフォーム</p>
+    <button id="main-button">はじめる</button>
   </header>
 
-  <section class="feature">
-    <h3 class="feature-title">即時インサイト</h3>
-    <p class="feature-desc">リアルタイムAIが意思決定を支援。</p>
+  <section class="music-links">
+    <h2>🎧 音楽リリース</h2>
+
+    <div class="artist">
+      <h3>ON:μ</h3>
+      <a href="https://music.apple.com/jp/artist/on-%CE%BC/1821249016" class="music-button" target="_blank">Apple Music</a>
+      <a href="https://open.spotify.com/artist/6mlMniZ6dIFrAgtvyNngtd?si=UYmcqgLiQdSJnxhb7uHRHQ" class="music-button" target="_blank">Spotify</a>
+    </div>
+
+    <div class="artist">
+      <h3>NEXUTHA</h3>
+      <a href="https://music.apple.com/jp/artist/nexutha/1822103960" class="music-button" target="_blank">Apple Music</a>
+      <a href="https://open.spotify.com/artist/7bdIEZfVzKa66aWWDx7LZl?si=aBrxDUKkTsy00VxucqBGpA" class="music-button" target="_blank">Spotify</a>
+    </div>
   </section>
 
-  <section class="experience">
-    <img src="https://cdn.pixabay.com/photo/2020/03/01/11/56/beach-4893983_1280.jpg" alt="海と夕日の画像">
-    <h3>NEXUTHAの体験</h3>
-    <p>音楽を始めAIソリューションをまとめた</p>
-  </section>
+  <main>
+    <div class="feature-card">
+      <h2 class="feature-title">即時インサイト</h2>
+      <p class="feature-desc">リアルタイムAIが意思決定を支援。</p>
+    </div>
+    <div class="feature-card">
+      <h2 class="feature-title">未来設計</h2>
+      <p class="feature-desc">個人の可能性を広げるツール。</p>
+    </div>
+    <div class="feature-card">
+      <h2 class="feature-title">統合体験</h2>
+      <p class="feature-desc">音楽、AI、表現をひとつに。</p>
+    </div>
+  </main>
 
   <footer>
-    <p><strong>よくある質問</strong><br/>
-    AIはどう活用しますか？<br/>
-    他のツールと連携可能ですか？<br/>
-    データは安全ですか？</p>
-    <p>© 2025 NEXUTHA. All rights reserved. | <a href="#">プライバシーポリシー</a> | <a href="#">利用規約</a></p>
+    <p>© 2025 NEXUTHA. All rights reserved.</p>
   </footer>
 
   <script>
-    // マウス追従レインボー光球
-    const canvas = document.getElementById('bg');
-    const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     let hue = 0;
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    document.addEventListener('mousemove', (e) => {
+    document.addEventListener("mousemove", (e) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const gradient = ctx.createRadialGradient(e.clientX, e.clientY, 0, e.clientX, e.clientY, 150);
       gradient.addColorStop(0, `hsl(${hue}, 100%, 70%)`);
@@ -96,37 +115,43 @@
       hue = (hue + 2) % 360;
     });
 
-    // 言語切替
     const translations = {
-      ja: {
-        title: "NEXUTHAへようこそ",
-        subtitle: "AI × 音楽 × 自由",
-        button: "ENGLISH",
-        features: ["即時インサイト"],
-        descriptions: ["リアルタイムAIが意思決定を支援。"],
-        langBtn: "ENGLISH"
-      },
       en: {
         title: "Welcome to NEXUTHA",
-        subtitle: "AI × Music × Freedom",
-        button: "日本語",
-        features: ["Instant Insight"],
-        descriptions: ["Real-time AI assists your decisions."],
-        langBtn: "日本語"
+        subtitle: "AI platform for the future",
+        button: "Get Started",
+        langBtn: "日本語",
+        features: ["Instant Insight", "Future Design", "Integrated Experience"],
+        descriptions: [
+          "Real-time AI supports your decisions.",
+          "Tools that expand individual potential.",
+          "Music, AI, and creativity in one place."
+        ]
+      },
+      ja: {
+        title: "ようこそ、NEXUTHAへ",
+        subtitle: "未来を創るAIプラットフォーム",
+        button: "はじめる",
+        langBtn: "ENGLISH",
+        features: ["即時インサイト", "未来設計", "統合体験"],
+        descriptions: [
+          "リアルタイムAIが意思決定を支援。",
+          "個人の可能性を広げるツール。",
+          "音楽、AI、表現をひとつに。"
+        ]
       }
     };
-
     let lang = "ja";
-
-    document.getElementById("lang-switch").addEventListener("click", () => {
+    function switchLanguage() {
       lang = lang === "ja" ? "en" : "ja";
       const t = translations[lang];
       document.getElementById("main-title").innerText = t.title;
       document.getElementById("subtitle").innerText = t.subtitle;
+      document.getElementById("main-button").innerText = t.button;
+      document.querySelectorAll(".feature-title").forEach((el, i) => el.innerText = t.features[i]);
+      document.querySelectorAll(".feature-desc").forEach((el, i) => el.innerText = t.descriptions[i]);
       document.getElementById("lang-switch").innerText = t.langBtn;
-      document.querySelectorAll(".feature-title").forEach((el, i) => el.innerText = t.features[i] || "");
-      document.querySelectorAll(".feature-desc").forEach((el, i) => el.innerText = t.descriptions[i] || "");
-    });
+    }
   </script>
 </body>
 </html>
