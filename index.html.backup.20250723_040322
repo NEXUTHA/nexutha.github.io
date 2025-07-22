@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXUTHA</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow: hidden;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .center-text h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .lang-switch {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+    }
+    .lang-switch button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    .x-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+    }
+    .x-button a {
+      background: linear-gradient(135deg, #1da1f2, #0d8ddb);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      font-family: sans-serif;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+
+  <div class="x-button">
+    <a href="https://x.com/nexutha1" target="_blank">X（Twitter）</a>
+  </div>
+
+  <div class="lang-switch">
+    <button onclick="switchLang()">ENGLISH</button>
+  </div>
+
+  <div class="center-text" id="main-text">
+    <h1>ビジネスを変革するAIの力</h1>
+    <p>データで加速する革新の時代をスタート</p>
+  </div>
+
+  <script>
+    const jaText = `
+      <h1>ビジネスを変革するAIの力</h1>
+      <p>データで加速する革新の時代をスタート</p>
+    `;
+    const enText = `
+      <h1>The Power of AI to Transform Business</h1>
+      <p>Welcome to the era of data-driven innovation</p>
+    `;
+    let isEnglish = false;
+    function switchLang() {
+      document.getElementById('main-text').innerHTML = isEnglish ? jaText : enText;
+      document.querySelector('.lang-switch button').innerText = isEnglish ? 'ENGLISH' : '日本語';
+      isEnglish = !isEnglish;
+    }
+
+    window.onload = () => {
+      const canvas = document.getElementById('bg');
+      const ctx = canvas.getContext('2d');
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      let hue = 0;
+      document.addEventListener('mousemove', (e) => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const gradient = ctx.createRadialGradient(e.clientX, e.clientY, 0, e.clientX, e.clientY, 150);
+        gradient.addColorStop(0, `hsl(${hue}, 100%, 70%)`);
+        gradient.addColorStop(1, 'transparent');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(e.clientX, e.clientY, 150, 0, Math.PI * 2);
+        ctx.fill();
+        hue = (hue + 2) % 360;
+      });
+    };
+  </script>
+</body>
+</html>
