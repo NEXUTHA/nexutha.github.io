@@ -1,0 +1,95 @@
+{
+  "name": "nexutha-improved",
+  "version": "2.0.0",
+  "description": "NEXUTHA - AI, Music & Technology Fusion - Modernized Web Application",
+  "keywords": [
+    "AI",
+    "music-production",
+    "prompt-engineering",
+    "automation",
+    "technology",
+    "laser-art",
+    "web-application",
+    "typescript"
+  ],
+  "author": "NEXUTHA",
+  "license": "MIT",
+  "homepage": "https://nexutha.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nexutha/nexutha-improved.git"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx --fix",
+    "lint:check": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,html}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css,html}\"",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "clean": "rm -rf dist .vite",
+    "analyze": "vite-bundle-analyzer",
+    "lighthouse": "lighthouse http://localhost:4173 --output json --output html --output-path=./reports/",
+    "seo:validate": "node scripts/validate-seo.js",
+    "deploy:staging": "npm run build && npm run deploy:vercel:staging",
+    "deploy:production": "npm run build && npm run deploy:vercel:production",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "intersection-observer": "^0.12.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "@vitejs/plugin-legacy": "^5.2.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "husky": "^8.0.3",
+    "lighthouse": "^11.4.0",
+    "lint-staged": "^15.2.0",
+    "postcss": "^8.4.32",
+    "prettier": "^3.1.1",
+    "terser": "^5.26.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vite-bundle-analyzer": "^0.7.0",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-pwa": "^0.17.4",
+    "vitest": "^1.1.0",
+    "workbox-build": "^7.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,html,json,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run type-check && npm run test"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
