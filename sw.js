@@ -1,2 +1,15 @@
-if(!self.define){let s,e={};const l=(l,i)=>(l=new URL(l+".js",i).href,e[l]||new Promise(e=>{if("document"in self){const s=document.createElement("script");s.src=l,s.onload=e,document.head.appendChild(s)}else s=l,importScripts(l),e()}).then(()=>{let s=e[l];if(!s)throw new Error(`Module ${l} didn’t register its module`);return s}));self.define=(i,n)=>{const r=s||("document"in self?document.currentScript.src:"")||location.href;if(e[r])return;let t={};const o=s=>l(s,r),u={module:{uri:r},exports:t,require:o};e[r]=Promise.all(i.map(s=>u[s]||o(s))).then(s=>(n(...s),t))}}define(["./workbox-5ffe50d4"],function(s){"use strict";self.skipWaiting(),s.clientsClaim(),s.precacheAndRoute([{url:"assets/css/main-VknkbVkC.css",revision:null},{url:"assets/js/main-DpTUSEI1.js",revision:null},{url:"assets/js/main-legacy-B5OlVDqb.js",revision:null},{url:"assets/js/polyfills-legacy-BKjbBZNw.js",revision:null},{url:"assets/js/polyfills-tsgyDGBd.js",revision:null},{url:"assets/js/utils-_pCHWMaA.js",revision:null},{url:"assets/js/utils-legacy-BXMkungC.js",revision:null},{url:"assets/js/vendor-l0sNRNKZ.js",revision:null},{url:"assets/js/vendor-legacy-CnvmjJHj.js",revision:null},{url:"index.html",revision:"b66b4fc44155ed2371d6720027eadf2b"},{url:"registerSW.js",revision:"1872c500de691dce40960bb85481de07"},{url:"manifest.webmanifest",revision:"0b44525a39e6178589f09264070b2863"}],{}),s.cleanupOutdatedCaches(),s.registerRoute(new s.NavigationRoute(s.createHandlerBoundToURL("index.html")))});
-//# sourceMappingURL=sw.js.map
+self.addEventListener('install', e => self.skipWaiting());
+self.addEventListener('activate', e => {
+  e.waitUntil((async () => {
+    try {
+      // 自分自身をアンレジスター
+      await self.registration.unregister();
+      // すべてのキャッシュを削除
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+      // 開いている全タブをリロード相当（同じURLへナビゲート）
+      const cs = await self.clients.matchAll({type: 'window', includeUncontrolled: true});
+      cs.forEach(c => c.navigate(c.url));
+    } catch (_) {}
+  })());
+});
