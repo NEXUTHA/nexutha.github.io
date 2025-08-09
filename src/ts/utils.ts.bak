@@ -492,6 +492,7 @@ export const features = {
   },
 
   supportsServiceWorker(): boolean {
+    return 'serviceWorker' in navigator;
   },
 
   supportsWebGL(): boolean {

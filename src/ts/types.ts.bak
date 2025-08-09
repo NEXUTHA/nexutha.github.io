@@ -275,6 +275,7 @@ export interface AppConfig {
   features: {
     analytics: boolean;
     chatbot: boolean;
+    serviceWorker: boolean;
     animations: boolean;
   };
   performance: {
