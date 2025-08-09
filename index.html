@@ -1402,6 +1402,15 @@
             margin-right: 8px;
         }
     </style>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+  if (window.caches) { caches.keys().then(keys => keys.forEach(k => caches.delete(k))); }
+}
+</script>
+<meta http-equiv="Cache-Control" content="no-store, max-age=0" />
+
 </head>
 <body>
     <div class="loader" id="loader">
