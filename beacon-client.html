@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NEXUTHA Beacon Controller</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #1a1a1a; color: #fff; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .connected { background: #2d5a2d; }
+        .disconnected { background: #5a2d2d; }
+        .beacon-log { background: #2d2d2d; padding: 10px; border-radius: 5px; height: 300px; overflow-y: auto; }
+        button { padding: 10px 20px; background: #0066cc; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0052a3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 NEXUTHA Beacon System</h1>
+        
+        <div id="status" class="status disconnected">
+            Status: Disconnected
+        </div>
+        
+        <button onclick="simulateBeacon()">Simulate Beacon Detection</button>
+        
+        <div class="beacon-log" id="beaconLog">
+            <div>Waiting for beacon detection...</div>
+        </div>
+    </div>
+
+    <script>
+        const ws = new WebSocket('ws://localhost:8080');
+        
+        ws.onopen = () => {
+            document.getElementById('status').className = 'status connected';
+            document.getElementById('status').textContent = 'Status: Connected';
+        };
+        
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            logBeacon(data);
+        };
+        
+        function logBeacon(data) {
+            const log = document.getElementById('beaconLog');
+            const timestamp = new Date().toLocaleTimeString();
+            log.innerHTML += '<div>[' + timestamp + '] ' + JSON.stringify(data, null, 2) + '</div>';
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        function simulateBeacon() {
+            fetch('http://localhost:3001/beacon/detected', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    uuid: 'NEXUTHA-' + Math.random().toString(36).substr(2, 9),
+                    major: Math.floor(Math.random() * 100),
+                    minor: Math.floor(Math.random() * 100),
+                    rssi: -Math.floor(Math.random() * 100),
+                    location: 'Simulated Location'
+                })
+            });
+        }
+    </script>
+</body>
+</html>
